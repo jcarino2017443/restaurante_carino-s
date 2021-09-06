@@ -1,0 +1,30 @@
+body,html{
+    background-color:#eee;
+    margin: 0px;
+    padding: 0px;
+    font-family: Roboto, Helvetica, sans-serif;
+}
+
+#message{
+    padding: 10px 15px;
+    background-color: #222;
+    color: white;
+    margin: 0px;
+    text-align: center;
+}
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0,0,0, 0.5);
+    padding: 1em;
+}
+#map img{
+    max-width: 100%;
+}
+@media only screen and(max-width: 950px){
+    .container{
+        max-width: 100%;
+    }
+}

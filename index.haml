@@ -1,0 +1,116 @@
+-gallery_images = ["club-sandwich.jpg","papas.jpg", "hamburger.jpg", "panini.jpg", "combo.jpg", "hot-cakes.jpg"]
+!!!5
+%html{class:"no-js", lang:"es"}
+	%head
+		%meta{charset:"uft-8"}
+		%title Restaurante
+		%meta{name:"description", content:"dsadfaskfdsjfasdjfkds"}
+		%link{rel:"stylesheet", href:"css/normalize.css"}
+		%link{rel:"stylesheet", href:"css/bootstrap.css"}
+		%link{rel:"stylesheet", href:"https://cdn.jsdelivr.net/npm/flexboxgrid@6.3.1/dist/flexboxgrid.min.css"}
+		%link{rel:"stylesheet", href:"css/style.css"}
+		%link{rel:"stylesheet", href:"https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap", type:"text/css"}
+		%meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+		%meta{:"data-name" => "contado-imagenes", content:"#{gallery_images.size-1}"}
+		%script{src:"js/vendor/modernizr-2.8.3.min.js"}  
+	%body
+		.video-container
+			%video{autoplay:true, loop:true, width:"1280", height:"720"}
+				%source{src:"videos/mp4/bbq.mp4", type:"video/mp4"}
+				%source{src:"videos/webm/bbq.webm", type:"video/webm"}
+		.row.full-height.center-xs.middle-xs.relative.up#home
+			.col-xs-12
+				.box
+					%img{src:"imgs/logo.png", width:200}
+					%h1.whitetext La mejor comida
+					%p#is-open 
+						%i.glyphicon.glyphicon-time
+						%span.text Abierto ahora 		
+			%nav.fixed#navegation.top.right.color.list
+				-menu = [{title:"Inicio", link:"#home"},{title:"Menu", link:"#menu"},{title:"Contacto", link:"#contact"},{title:"Galeria",link:"#gallery"},{title:"Direccion", link:"#location"}]
+				%ul.list-inline
+					-menu.each do |item|
+						%li
+							%a{href:item[:link]}= item [:title]
+			.absoluto.color.padding.black.full-width#description
+				.row.middle-xs.center-xs
+					.col-xs-7.col-sm-6.color.medio
+						Atencion de calidad y comida de calidad
+					.col-xs.hidden#stickyNavegation
+						.box	
+							%nav.text-right.list#response_nav
+								%i.glyphicon.glyphicon-menu-hamburger#menu_ordener.glyphicon-remove
+								%ul.list-inline
+									-menu.each do |item|
+										%li
+											%a.menu_link{href:item[:link]}= item [:title]
+
+		.text-center.relative#menu
+			.absoluto#menu-tittle 
+				.row.middle-xs.center-xs.full-height
+					%h2.whitetext_tittle Menu
+			-menu_photos = [{name:"Club Sandwich",image:"club-sandwich",precing:"10.00"},{name:"Combo hamburguesa",image:"combo",precing:"10.00"},{name:"Hamburguesa",image:"hamburger",precing:"20.00"},{name:"hot-cakes",image:"hot-cakes",precing:"5.00"},{name:"panini",image:"panini",precing:"15.00"},{name:"papas",image:"papas",precing:"10.00"}]
+			.row
+				-menu_photos.each do |photo|
+					.col-md-4.col-lg-3.col-sm-6.col-xs-12.food{style:"background-image:url(imgs/food/#{photo[:image]}-thumb.jpg)"}
+						.screen						
+							.row.middle-xs.full-height
+								.col-xs-12
+									%h3.whitetext.white-text= photo[:name]
+									%p.color.write-text= photo[:precing] + "USD"
+		#gallery
+			.inner
+				-gallery_images.each do |image|
+					.images{style: "background-image:url(imgs/food/#{image})"}
+		.container{style:"width:100%"}
+			.card.text-center.relative
+				%h3.medio.slim 
+					En  
+					%strong.whitetext_tittle_card Restaurente Carino's 
+					cocinar no es una profesion, tampoco tecnica 			
+					%strong.whitetext_tittle_card ... si no pasion
+				%p.top_space 
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam odit repellendus delectus tenetur quasi quae eveniet, praesentium illo placeat 
+					porro sed nam facere earum? Maiores eaque nemo debitis 
+					quasi eum.
+					%strong.whitetext_tittle_card -Coco - Chef
+					.black.whitetext.text-center 
+						Tambien puedes acceder a este sitio sin internet
+		.color.black.full-height#contact
+			.row.middle-xs.full-height
+				.col-xs-12
+					.box
+						%p.text-center.mediano#info_contacto Presiona enter para llenar el campo
+						%form.top_space.color{action:"https://formspree.io/jeffreybarahona839@gmail.com", method:"POST", id:"contacto", class:"step-form"}
+							.row.center-xs
+								.col-xs-12.col-md-1.col-sm-2.first-sm
+									.box
+										-3.times do |i|
+											-if i == 0 
+												.path_step.active
+											-else
+												.path_step 								
+								.col-xs-12.col-sm-3.first-xs
+									.box
+										%fieldset.step.active
+											%input{type:"email", name:"email", placeholder:"email", class:"input", required:true}
+										%fieldset.step
+											%input{type:"text", name:"text", placeholder:"nombre" , class:"input", required:true}
+										%fieldset.step
+											%textarea{name:"body", placeholder:"escribe tu mensaje",class:"input",required:true}
+		#location
+			#map
+			#message.black.large-padding.text-white.text-center.mediano
+				MAPA
+										
+											
+		%script{src:"https://code.jquery.com/jquery-3.6.0.min.js", integrity:"sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=", crossorigin:"anonymous"}
+		%script
+			window.jQuery || document.write("<script src='/js/vendor/jquery-1.12.0.min.js'><\/script>")
+		%script{src:"https://maps.googleapis.com/maps/api/js?key=AIzaSyBbunxE6vqj3p44RtnEf1CqG9SMNfCdY5E"}
+		%script{src:"dist/maps.js"}
+		%script{src:"js/main.js"}
+		%script{src:"js/forms.object.js"}
+		%script{src:"dist/step.js"}
+		%script{src:"dist/app.js"}
+
